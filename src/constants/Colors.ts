@@ -1,0 +1,14 @@
+export const Colors = {
+  blue: "#44ddf1",
+  teal: "#007a89",
+  yellow: "#f5cd6a",
+  gold: "#8f6800",
+  orange: "#eb8f48",
+  brown: "#9b4500",
+  purple: "#3a2044",
+  "purple-light": "#f3cefc",
+  white: "#ffffff",
+  "surface-dim": "#f7eef9",
+  "background-fade": "#fff9f5",
+  "yellow-fade": "#f5ce6a8c",
+};
