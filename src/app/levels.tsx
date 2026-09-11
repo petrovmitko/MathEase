@@ -23,10 +23,41 @@ export default function LevelsScreen() {
       add: ["4 + 5", "25 + 14", "245 + 132"],
       sub: ["9 - 3", "85 - 22", "945 - 312"],
       mul: ["3 * 4", "12 * 10", "131 * 18"],
-      div: ["8 / 2", "90 / 10", "800 / 18"],
+      div: ["8 / 2", "90 / 9", "800 / 25"],
     };
 
     const currentExamples = examples[operation as string] || ["?", "?", "?"];
+
+    if (operation === "div") {
+      return [
+        {
+          id: "1",
+          range: 10,
+          textKey: "singleDigitDiv",
+          subtextKey: "easyStart",
+          levelKey: "beginner",
+          levelIcon: "🍃",
+          levelColor: Colors.yellow,
+          example: `${currentExamples[0]} = ?`,
+          type: "Single",
+          detail: "1-9",
+          textColor: Colors["purple"],
+        },
+        {
+          id: "2",
+          range: 100,
+          textKey: "doubleDigitDiv",
+          subtextKey: "gettingHarder",
+          levelKey: "intermediate",
+          levelIcon: "⚡",
+          levelColor: Colors.blue,
+          example: `${currentExamples[1]} = ?`,
+          type: "Double",
+          detail: "10-25",
+          textColor: Colors.brown,
+        },
+      ];
+    }
 
     return [
       {
@@ -132,7 +163,7 @@ export default function LevelsScreen() {
               <View style={styles.cardTop}>
                 <View style={styles.cardTopLeft}>
                   <Text style={[styles.cardTitle, { color: level.textColor }]}>
-                    {t(level.textKey as any)} ({level.detail})
+                    {t(level.textKey as any)}
                   </Text>
                   <Text style={[styles.cardSubtext, { color: "#868c8f" }]}>
                     {t(level.subtextKey as any)}

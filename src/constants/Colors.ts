@@ -1,5 +1,6 @@
 export const Colors = {
   blue: "#44ddf1",
+  "blue-fade": "#44ddf140",
   teal: "#007a89",
   yellow: "#f5cd6a",
   gold: "#8f6800",
@@ -10,5 +11,5 @@ export const Colors = {
   white: "#ffffff",
   "surface-dim": "#f7eef9",
   "background-fade": "#fff9f5",
-  "yellow-fade": "#f5ce6a8c",
+  "yellow-fade": "#f5ce6a6a",
 };

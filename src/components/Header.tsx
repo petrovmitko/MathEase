@@ -10,7 +10,8 @@ import {
 } from "react-native";
 
 interface HeaderProps {
-  title?: string;
+  title?: string | React.ReactNode;
+  subtitle?: string;
   leftComponent?: React.ReactNode;
   rightComponent?: React.ReactNode;
   centerTitle?: boolean;
@@ -18,6 +19,7 @@ interface HeaderProps {
 
 export default function Header({
   title,
+  subtitle,
   leftComponent,
   rightComponent,
   centerTitle = true,
@@ -40,7 +42,20 @@ export default function Header({
         <View style={styles.leftSlot}>{leftComponent}</View>
 
         <View style={[styles.centerSlot, !centerTitle && styles.alignLeft]}>
-          {title ? <Text style={styles.titleText}>{title}</Text> : null}
+          {typeof title === "string" ? (
+            <Text style={styles.titleText}>{title}</Text>
+          ) : (
+            title
+          )}
+          {subtitle ? (
+            <Text
+              style={styles.subtitleText}
+              numberOfLines={1}
+              adjustsFontSizeToFit
+            >
+              {subtitle}
+            </Text>
+          ) : null}
         </View>
 
         <View style={styles.rightSlot}>{rightComponent || defaultRight}</View>
@@ -82,9 +97,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleText: {
-    fontSize: 22,
+    fontSize: 20,
     fontWeight: "bold",
     color: Colors.purple,
+  },
+  subtitleText: {
+    fontSize: 12,
+    color: Colors.teal,
+    fontWeight: "bold",
   },
   langButton: {
     borderRadius: 8,
