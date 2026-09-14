@@ -1,12 +1,25 @@
 import Header from "@/components/Header";
 import { Colors } from "@/constants/Colors";
 import { useLanguage } from "@/context/LanguageContext";
+import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import logo from "../../assets/icon.png";
 
 export default function HomeScreen() {
   const router = useRouter();
   const { t } = useLanguage();
+
+  const titleWithImage = (
+    <View style={styles.headerTitleRow}>
+      <Text style={styles.headerTitleText}>{t("appTitle")}</Text>
+      <Image
+        source={logo} // Add your image path here
+        style={styles.headerImage}
+        contentFit="contain"
+      />
+    </View>
+  );
 
   const operations = [
     { id: "add", labelKey: "add", icon: "➕", color: Colors["blue"] },
@@ -24,7 +37,7 @@ export default function HomeScreen() {
 
   return (
     <View style={styles.container}>
-      <Header title={t("appTitle")} />
+      <Header title={titleWithImage} />
       <View style={styles.content}>
         <Text style={styles.title}>{t("chooseAction")}</Text>
         <View style={styles.grid}>
@@ -107,5 +120,19 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: Colors.purple,
     paddingTop: 16,
+  },
+  headerTitleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 8,
+  },
+  headerTitleText: {
+    fontSize: 22,
+    fontWeight: "bold",
+    color: Colors.purple,
+  },
+  headerImage: {
+    width: 24,
+    height: 24,
   },
 });

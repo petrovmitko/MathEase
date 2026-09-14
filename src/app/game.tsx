@@ -1,4 +1,6 @@
+import FailureModal from "@/components/FailureModal";
 import Header from "@/components/Header";
+import SuccessModal from "@/components/SuccessModal";
 import { Colors } from "@/constants/Colors";
 import { useLanguage } from "@/context/LanguageContext";
 import { useLocalSearchParams, useRouter } from "expo-router";
@@ -17,8 +19,12 @@ export default function GameScreen() {
   const [currentOp, setCurrentOp] = useState("+");
   const [userAnswer, setUserAnswer] = useState("");
   const [score, setScore] = useState(0);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showFailure, setShowFailure] = useState(false);
 
   const generateProblem = () => {
+    setShowSuccess(false);
+    setShowFailure(false);
     let opSymbol = "+";
     if (operation === "add") opSymbol = "+";
     else if (operation === "sub") opSymbol = "-";
@@ -90,13 +96,9 @@ export default function GameScreen() {
 
     if (numAnswer === getCorrectAnswer()) {
       setScore(score + 1);
-      Alert.alert(t("correct"), t("correctMsg"), [
-        { text: t("next"), onPress: generateProblem },
-      ]);
+      setShowSuccess(true);
     } else {
-      Alert.alert(t("wrong"), `${t("wrongMsg")}${getCorrectAnswer()}`, [
-        { text: t("tryAgain"), onPress: () => setUserAnswer("") },
-      ]);
+      setShowFailure(true);
     }
   };
 
@@ -171,6 +173,21 @@ export default function GameScreen() {
       />
 
       <View style={styles.content}>
+        <SuccessModal
+          visible={showSuccess}
+          onNext={generateProblem}
+          correctAnswer={userAnswer}
+          problem={`${num1} ${currentOp} ${num2}`}
+        />
+        <FailureModal
+          visible={showFailure}
+          onTryAgain={() => setShowFailure(false)}
+          onSkip={generateProblem}
+          userAnswer={userAnswer}
+          num1={num1}
+          num2={num2}
+          operator={currentOp}
+        />
         <View style={styles.gameCard}>
           <Text style={styles.problemText}>
             {num1} {currentOp} {num2} = ?

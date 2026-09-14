@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "MathEase",
-    "slug": "MathEase",
+    "name": "MathPractEase",
+    "slug": "MathPractEase",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/icon.png",
     "scheme": "mathease",
     "userInterfaceStyle": "automatic",
     "ios": {
