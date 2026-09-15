@@ -2,12 +2,12 @@ import { Colors } from "@/constants/Colors";
 import { useLanguage } from "@/context/LanguageContext";
 import React from "react";
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 interface HeaderProps {
   title?: string | React.ReactNode;
@@ -25,6 +25,7 @@ export default function Header({
   centerTitle = true,
 }: HeaderProps) {
   const { language, setLanguage } = useLanguage();
+  const insets = useSafeAreaInsets();
 
   const toggleLanguage = () => {
     setLanguage(language === "bg" ? "en" : "bg");
@@ -37,7 +38,15 @@ export default function Header({
   );
 
   return (
-    <SafeAreaView style={styles.safeArea}>
+    <View
+      style={[
+        styles.safeArea,
+        {
+          paddingTop: insets.top,
+          backgroundColor: Colors.white,
+        },
+      ]}
+    >
       <View style={styles.container}>
         <View style={styles.leftSlot}>{leftComponent}</View>
 
@@ -60,13 +69,12 @@ export default function Header({
 
         <View style={styles.rightSlot}>{rightComponent || defaultRight}</View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   safeArea: {
-    backgroundColor: Colors.white,
     elevation: 4,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },

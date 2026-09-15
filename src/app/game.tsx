@@ -134,12 +134,13 @@ export default function GameScreen() {
                   key === "C" && { backgroundColor: Colors.orange },
                   key === "del" && { backgroundColor: Colors.yellow },
                   ["1", "3", "5", "7", "9"].includes(key) && {
-                    backgroundColor: Colors["blue-fade"],
+                    backgroundColor: Colors["blue-light"],
                   },
                   ["2", "4", "6", "8", "0"].includes(key) && {
-                    backgroundColor: Colors["yellow-fade"],
+                    backgroundColor: Colors["yellow-light"],
                   },
                 ]}
+                activeOpacity={0.7}
                 onPress={() => handleKeyPress(key)}
               >
                 <Text
@@ -289,11 +290,15 @@ const styles = StyleSheet.create({
   key: {
     flex: 1,
     aspectRatio: 1.5,
-    backgroundColor: Colors.white,
     borderRadius: 16,
     justifyContent: "center",
     alignItems: "center",
     elevation: 2,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+    borderWidth: 0, // Remove default border
   },
   keyText: {
     fontSize: 28,

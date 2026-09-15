@@ -1,8 +1,10 @@
 export const Colors = {
   blue: "#44ddf1",
+  "blue-light": "#d1f7fb",
   "blue-fade": "#44ddf140",
   teal: "#007a89",
   yellow: "#f5cd6a",
+  "yellow-light": "#fdf3d3",
   gold: "#8f6800",
   orange: "#eb8f48",
   brown: "#9b4500",
